@@ -1,5 +1,4 @@
 //Business Logic
-
 // If string is only letters, return true, else false
 const ISWORD = function(word) {
   if (word.match(/^[A-Za-z]+$/)) {
@@ -92,7 +91,6 @@ const PIGPARSER = function(word) {
     return word;
   }
 
-
 };
 
 // User Interface Logic
@@ -103,7 +101,4 @@ $(document).ready(function() {
 
     $("#pig-latin-output").text(PARSESENT(MULTIWORDS(userInput)));
   });
-
-
-
 }); // document ready close
