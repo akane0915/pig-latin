@@ -30,26 +30,34 @@ const STRTOARRAY = function(word) {
   return word.split("");
 };
 
-// Evaluate if first element in array is a vowel, return true, else return false
-// const ISFIRSTVOWEL = function(word){
-//   const VOWELS = ["a","e","i","o","u"];
-//   VOWELS.forEach(function(vowel){
-//     let firstLetter = STRTOARRAY(word)[0];
-//     if (firstLetter === vowel) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-//   });
-// };
+// Return first element of an array
+const FIRSTLETTER = function(word){
+  return (STRTOARRAY(word)[0]);
+};
+
+// Evaluate if a letter is a vowel, return true, else return false
+const ISVOWEL = function(letter) {
+  if (letter.match(/^[AEIOUaeiou]$/)) {
+    return true ;
+  } else {
+    return false;
+  }
+};
+
+// Move first element of array to end of array
+const FIRSTTOEND = function(array){
+  const FIRST = array.shift();
+  array.push(FIRST);
+  return array;
+};
+
 
 // User Interface Logic
 $(document).ready(function() {
   $("form#pig-latin-form").submit(function(event) {
     event.preventDefault();
     let userInput = $("input#pig-latin-input").val();
-    console.log(ISFIRSTVOWEL(userInput));
-    console.log(PIGOUTPUT(userInput));
+    console.log(FIRSTTOEND(STRTOARRAY(userInput)));
   });
 
 
