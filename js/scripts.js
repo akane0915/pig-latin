@@ -36,10 +36,17 @@ const ISVOWEL = function(letter) {
 // Move first consecutive consonants of array to end of array
 const CONTOEND = function(letters){
   let consonants = [];
-  while (ISVOWEL(letters[0]) === false) {
+  if (letters[0].match(/q/i) && letters[1].match(/u/i)){
     const FIRST = letters.shift();
     consonants.push(FIRST);
-  };
+    const U = letters.shift();
+    consonants.push(U);
+  } else {
+      while (ISVOWEL(letters[0]) === false) {
+        const FIRST = letters.shift();
+        consonants.push(FIRST);
+      };
+  }
   let newArray = letters.concat(consonants);
   return newArray.join("");
 };
@@ -80,7 +87,8 @@ $(document).ready(function() {
   $("form#pig-latin-form").submit(function(event) {
     event.preventDefault();
     let userInput = $("input#pig-latin-input").val();
-    console.log(PIGOUTPUT(userInput));
+
+    $("#pig-latin-output").text(PIGOUTPUT(userInput));
   });
 
 
