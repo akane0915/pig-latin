@@ -1,7 +1,5 @@
 //Business Logic
 
-
-
 // If string is only letters, return true, else false
 const ISWORD = function(word) {
   if (word.match(/^[A-Za-z]+$/)) {
@@ -10,7 +8,6 @@ const ISWORD = function(word) {
     return false;
   }
 };
-
 
 // Add ay to end of a word
 const WORDAY = function(word) {
@@ -36,13 +33,18 @@ const ISVOWEL = function(letter) {
   }
 };
 
-// Move first element of array to end of array
-const FIRSTTOEND = function(letters){
-  const FIRST = letters.shift();
-  letters.push(FIRST);
-  return letters.join("");
+// Move first consecutive consonants of array to end of array
+const CONTOEND = function(letters){
+  let consonants = [];
+  while (ISVOWEL(letters[0]) === false) {
+    const FIRST = letters.shift();
+    consonants.push(FIRST);
+  };
+  let newArray = letters.concat(consonants);
+  return newArray.join("");
 };
 
+// evaluates if a word is a single letter, return true, else return false
 const ISSINGLE = function(word) {
   if (word.length === 1) {
     return true;
@@ -51,7 +53,7 @@ const ISSINGLE = function(word) {
   }
 };
 
-// If string is a string, return string, else return string
+
 const PIGOUTPUT = function(word) {
   if (ISWORD(word) === true) { // input is all letters
     if (ISSINGLE(word) ===  true) { // word is single letter
@@ -65,7 +67,7 @@ const PIGOUTPUT = function(word) {
         return WORDAY(word); // return word with ay at the end
       }
       else { // word is multi letter and starts with a consonant
-        return WORDAY(FIRSTTOEND(STRTOARRAY(word))); // return word with consonant at end and add ay
+        return WORDAY(CONTOEND(STRTOARRAY(word))); // return word with consonant at end and add ay
       }
     }
   } else {
