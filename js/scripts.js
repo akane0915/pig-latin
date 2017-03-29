@@ -19,6 +19,18 @@ const STRTOARRAY = function(word) {
   return word.split("");
 };
 
+const MULTIWORDS = function(sentence) {
+  return sentence.split(" ");
+};
+
+const PARSESENT = function(wordArray) {
+  newArray = [];
+  wordArray.forEach(function(word) {
+    newArray.push(PIGPARSER(word));
+  });
+  return newArray.join(" ");
+};
+
 // Return first element of an array, which is a string
 const FIRSTLETTER = function(word){
   return (STRTOARRAY(word)[0]);
@@ -60,8 +72,7 @@ const ISSINGLE = function(word) {
   }
 };
 
-
-const PIGOUTPUT = function(word) {
+const PIGPARSER = function(word) {
   if (ISWORD(word) === true) { // input is all letters
     if (ISSINGLE(word) ===  true) { // word is single letter
       if (ISVOWEL(FIRSTLETTER(word)) === true) { //single letter is a vowel
@@ -80,6 +91,8 @@ const PIGOUTPUT = function(word) {
   } else {
     return word;
   }
+
+
 };
 
 // User Interface Logic
@@ -88,7 +101,7 @@ $(document).ready(function() {
     event.preventDefault();
     let userInput = $("input#pig-latin-input").val();
 
-    $("#pig-latin-output").text(PIGOUTPUT(userInput));
+    $("#pig-latin-output").text(PARSESENT(MULTIWORDS(userInput)));
   });
 
 
